@@ -1,133 +1,80 @@
-ThinkPHP 5.0
-===============
+# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
+# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
+# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
+# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
+#部分视频无法播放临时解决方法
+部分视频播放时提示 The media could not be loaded, either beca use the server or network failed or because the format is not supported.
+由于youtube算法升级，之前解析抓取youtube下载链接的方法失效。导致部分视频无法播放。
 
-[![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
-[![Latest Stable Version](https://poser.pugx.org/topthink/think/v/stable)](https://packagist.org/packages/topthink/think)
-[![Latest Unstable Version](https://poser.pugx.org/topthink/think/v/unstable)](https://packagist.org/packages/topthink/think)
-[![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
+解决方法参考https://github.com/You2php/you2php/issues/218#issuecomment-430182643
 
-ThinkPHP5在保持快速开发和大道至简的核心理念不变的同时，PHP版本要求提升到5.4，对已有的CBD模式做了更深的强化，优化核心，减少依赖，基于全新的架构思想和命名空间实现，是ThinkPHP突破原有框架思路的颠覆之作，其主要特性包括：
+#关于使用you2php网站搭建之后很快被墙的解决办法：
 
- + 基于命名空间和众多PHP新特性
- + 核心功能组件化
- + 强化路由功能
- + 更灵活的控制器
- + 重构的模型和数据库类
- + 配置文件可分离
- + 重写的自动验证和完成
- + 简化扩展机制
- + API支持完善
- + 改进的Log类
- + 命令行访问支持
- + REST支持
- + 引导文件支持
- + 方便的自动生成定义
- + 真正惰性加载
- + 分布式环境支持
- + 更多的社交类库
+1.启用SSL加密传输。
 
-> ThinkPHP5的运行环境要求PHP5.4以上。
+2.启用http验证
+   Nginx主机参考https://www.howtoing.com/setup-nginx-basic-http-authentication (从此页面搜索 ：密码保护Nginx虚拟主机)
+   apache主机参考 http://blog.51cto.com/wushank/1211202
+   
+  3.编辑footer.php文件，去除程序版权（Powered by YOU2PHP），经过多次验证，证实了Gfw会通过检索源代码中的关键字Powered by YOU2PHP判断关键字来屏蔽某些站点。
+  
+  4.不要广泛传播，自己使用，
+  
+  5.国家代码不要填HK与tw，这些地区的热门内容会很不友好，容易被GFW。
+  
+  做到这几点，被墙的几率基本低于10%。
 
-详细开发文档参考 [ThinkPHP5完全开发手册](http://www.kancloud.cn/manual/thinkphp5)
 
-## 目录结构
+低调使用，拒绝广泛传播，个人使用建议装在子目录，防止被搜索引擎爬虫嗅探到，切勿在中国大陆主机商提供的海外主机上搭建，不可绑定已备案域名，推荐狗爹几十元一年的虚拟主机，速度快完美运行（亲测）
 
-初始的目录结构如下：
+开发者API（不翻墙下载youtube）:https://ytcdn.bid/ 第三方提供
 
-~~~
-www  WEB部署目录（或者子目录）
-├─application           应用目录
-│  ├─common             公共模块目录（可以更改）
-│  ├─module_name        模块目录
-│  │  ├─config.php      模块配置文件
-│  │  ├─common.php      模块函数文件
-│  │  ├─controller      控制器目录
-│  │  ├─model           模型目录
-│  │  ├─view            视图目录
-│  │  └─ ...            更多类库目录
-│  │
-│  ├─command.php        命令行工具配置文件
-│  ├─common.php         公共函数文件
-│  ├─config.php         公共配置文件
-│  ├─route.php          路由配置文件
-│  ├─tags.php           应用行为扩展定义文件
-│  └─database.php       数据库配置文件
-│
-├─public                WEB目录（对外访问目录）
-│  ├─index.php          入口文件
-│  ├─router.php         快速测试文件
-│  └─.htaccess          用于apache的重写
-│
-├─thinkphp              框架系统目录
-│  ├─lang               语言文件目录
-│  ├─library            框架类库目录
-│  │  ├─think           Think类库包目录
-│  │  └─traits          系统Trait目录
-│  │
-│  ├─tpl                系统模板目录
-│  ├─base.php           基础定义文件
-│  ├─console.php        控制台入口文件
-│  ├─convention.php     框架惯例配置文件
-│  ├─helper.php         助手函数文件
-│  ├─phpunit.xml        phpunit配置文件
-│  └─start.php          框架入口文件
-│
-├─extend                扩展类库目录
-├─runtime               应用的运行时目录（可写，可定制）
-├─vendor                第三方类库目录（Composer依赖库）
-├─build.php             自动生成定义文件（参考）
-├─composer.json         composer 定义文件
-├─LICENSE.txt           授权说明文件
-├─README.md             README 文件
-├─think                 命令行入口文件
-~~~
+如果您没有虚拟主机和域名，可以通过申请freenom免费域名+000webhost免费空间搭建you2php。
+具体教程：
+https://github.com/pigmanidea/you2php-000webhost
 
-> router.php用于php自带webserver支持，可用于快速测试
-> 切换到public目录后，启动命令：php -S localhost:8888  router.php
-> 上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
+如果需要切换国家功能，请使用 https://github.com/hahadaba/YOU2PHP-GL-SELECTOR
 
-## 命名规范
+如果您需要看1080p或者4k或者直播请使用这个版本（安装方法看压缩包内的说明）
+1080p/4K 版本：
 
-`ThinkPHP5`遵循PSR-2命名规范和PSR-4自动加载规范，并且注意如下规范：
+https://raw.githubusercontent.com/You2php/you2php/master/%E6%94%AF%E6%8C%811080P-4k-%E7%9B%B4%E6%92%AD%E7%89%88%E6%9C%AC.zip
 
-### 目录和文件
 
-*   目录不强制规范，驼峰和小写+下划线模式均支持；
-*   类库、函数文件统一以`.php`为后缀；
-*   类的文件名均以命名空间定义，并且命名空间的路径和类库文件所在路径一致；
-*   类名和类文件名保持一致，统一采用驼峰法命名（首字母大写）；
+ps：若部分视频播放不出来，多刷新几次，一般一两分钟之后即可正常播放！！！
+在heroku上部署you2php: https://github.com/You2php/you2php-heroku
 
-### 函数和类、属性命名
+# You2PHP
+----
+You2PHP是一个用PHP开发的Youtube流量代理脚本、通过对接谷歌api获取数据，可用来搭建Youtube视频镜像站、可实现长城之内观看Youtube。
+请访问项目主页[https://you2php.github.io//](https://you2php.github.io/)查看更详细介绍。
 
-*   类的命名采用驼峰法，并且首字母大写，例如 `User`、`UserType`，默认不需要添加后缀，例如`UserController`应该直接命名为`User`；
-*   函数的命名使用小写字母和下划线（小写字母开头）的方式，例如 `get_client_ip`；
-*   方法的命名使用驼峰法，并且首字母小写，例如 `getUserName`；
-*   属性的命名使用驼峰法，并且首字母小写，例如 `tableName`、`instance`；
-*   以双下划线“__”打头的函数或方法作为魔法方法，例如 `__call` 和 `__autoload`；
+![https://you2php.github.io/img/pic/jt1.png](https://you2php.github.io/img/pic/jt1.png)
 
-### 常量和配置
+# 特点
+使用You2PHP的成本非常低，只需要一个支持PHP环境的虚拟海外主机，上传代码简单设置即可立即使用。无论您使用的是虚拟主机，还是VPS，上传即可使用，无需数据库！
 
-*   常量以大写字母和下划线命名，例如 `APP_PATH`和 `THINK_PATH`；
-*   配置参数以小写字母和下划线命名，例如 `url_route_on` 和`url_convert`；
+You2PHP对接谷歌官方APi，实现了视频/频道搜索、视频在线播放 、频道/类别内容预览、视频下载等功能、浏览这些内容不需要您的设备上安装任何软件。
 
-### 数据表和字段
+You2PHP采用GPL开源协议发布，你可以自由的使用和修改代码，随时随地，访问一个URL即可观看全球视频。
+请访问项目主页[https://you2php.github.io//](https://you2php.github.io/)查看更详细介绍。
+# 如何安装与使用
+请查看You2PHP文档[https://you2php.github.io/doc/](https://you2php.github.io/doc/)
 
-*   数据表和字段采用小写加下划线方式命名，并注意字段名不要以下划线开头，例如 `think_user` 表和 `user_name`字段，不建议使用驼峰和中文作为数据表字段命名。
+请在遵守当地相关法律法规的前提下使用本项目
 
-## 参与开发
+本人拒绝为任何商业或非法目的提供任何技术支持
 
-请参阅 [ThinkPHP5 核心框架包](https://github.com/top-think/framework)。
+本项目仅为科研人员更方便地学习知识而创建, 请勿大范围传播
+# 程序截图
 
-## 版权信息
+![https://you2php.github.io/img/11.png](https://you2php.github.io/img/11.png)
+![https://you2php.github.io/img/22.png](https://you2php.github.io/img/22.png)
+![https://you2php.github.io/img/33.png](https://you2php.github.io/img/33.png)
+![https://you2php.github.io/img/55.png](https://you2php.github.io/img/55.png)
+请在遵守当地相关法律法规的前提下使用本项目
 
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+本人拒绝为任何商业或非法目的提供任何技术支持
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+本项目仅为科研人员更方便地学习知识而创建, 请勿大范围传播
 
-版权所有Copyright © 2006-2018 by ThinkPHP (http://thinkphp.cn)
-
-All rights reserved。
-
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
-
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
